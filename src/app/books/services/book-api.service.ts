@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Book } from '../models/book';
+import { HttpClient } from "@angular/common/http";
+import { Injectable, inject } from "@angular/core";
+import { Observable } from "rxjs";
+import { Book } from "../models/book";
+import { SignalStore } from "./book-signal.store";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class BookApiService {
-  constructor(private http: HttpClient) {}
-
-  all(): Observable<Book[]> {
+  private http = inject(HttpClient);
+  getAll() {
     return this.http.get<Book[]>(`http://localhost:4730/books`);
   }
 
@@ -17,7 +17,7 @@ export class BookApiService {
     return this.http.get<Book>(`http://localhost:4730/books/${isbn}`);
   }
 
-  create(book: Partial<Book>): Observable<Book> {
+  create(book: Partial<Book>) {
     return this.http.post<Book>(`http://localhost:4730/books`, book);
   }
 }

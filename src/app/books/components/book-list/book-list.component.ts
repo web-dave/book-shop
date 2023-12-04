@@ -1,5 +1,7 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, computed, inject } from "@angular/core";
 import { BookApiService } from "../../services/book-api.service";
+import { SignalStore } from "../../services/book-signal.store";
+import { Book } from "../../models/book";
 
 @Component({
   selector: "ws-book-list",
@@ -7,7 +9,8 @@ import { BookApiService } from "../../services/book-api.service";
   styleUrls: ["./book-list.component.scss"],
 })
 export class BookListComponent implements OnInit {
-  books$ = inject(BookApiService).all();
+  books$$$ = inject(SignalStore).getAll();
+
   constructor() {}
 
   ngOnInit(): void {}

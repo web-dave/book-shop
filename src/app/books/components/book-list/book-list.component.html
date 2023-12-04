@@ -1,7 +1,8 @@
 <h2>Books</h2>
 <div class="books-grid">
-  <ws-book-card
-    *ngFor="let book of books$ | async"
-    [content]="book"
-  ></ws-book-card>
+  <!-- <ws-book-card *ngFor="let book of books()" [content]="book"></ws-book-card> -->
+  @for(book of books$$$(); track $index){
+  <ws-book-card [content]="book"></ws-book-card>
+  }
 </div>
+<pre>{{ books$$$() | json }}</pre>
