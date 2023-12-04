@@ -1,0 +1,7 @@
+<h2>Books</h2>
+<div class="books-grid">
+  <ws-book-card
+    *ngFor="let book of books$ | async"
+    [content]="book"
+  ></ws-book-card>
+</div>
