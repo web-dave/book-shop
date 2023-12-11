@@ -1,4 +1,12 @@
 import { signalStore, withState, withMethods, patchState } from "@ngrx/signals";
+import {
+  EntityState,
+  addEntities,
+  addEntity,
+  updateEntity,
+  removeEntity,
+  setAllEntities,
+} from "@ngrx/signals/entities";
 import { Book } from "../models/book";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { inject } from "@angular/core";
@@ -25,6 +33,7 @@ export const SignalStore = signalStore(
       return books().find((book) => book.isbn === isbn);
     },
     addAll(books: Book[]) {
+      // setAllEntities(books);
       patchState(store, { books });
     },
     loadAll: rxMethod<void>(
