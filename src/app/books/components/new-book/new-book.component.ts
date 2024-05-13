@@ -16,7 +16,7 @@ export class NewBookComponent {
     numPages: new FormControl(0, [Validators.required, Validators.min(1)]),
     title: new FormControl("", [Validators.required]),
     author: new FormControl("", [Validators.required]),
-    id: new FormControl("", [Validators.required]),
+    id: new FormControl("", []),
     subtitle: new FormControl(""),
     abstract: new FormControl(""),
     publisher: new FormControl(""),
