@@ -15,18 +15,18 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
 import { NewBookComponent } from './components/new-book/new-book.component';
 
 @NgModule({
-  declarations: [BooksComponent, BookCardComponent, BookListComponent, BookDetailComponent, NewBookComponent],
-  imports: [
-    CommonModule,
-    BooksRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        CommonModule,
+        BooksRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonToggleModule,
+        MatSnackBarModule,
+        BooksComponent, BookCardComponent, BookListComponent, BookDetailComponent, NewBookComponent,
+    ],
 })
 export class BooksModule {}

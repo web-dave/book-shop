@@ -3,12 +3,14 @@ import { EMPTY, Observable, filter, map, switchMap } from "rxjs";
 import { Book } from "../../models/book";
 import { ActivatedRoute } from "@angular/router";
 import { BookApiService } from "../../services/book-api.service";
+import { MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardImage, MatCardContent } from "@angular/material/card";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
     selector: "ws-book-detail",
     templateUrl: "./book-detail.component.html",
     styleUrls: ["./book-detail.component.scss"],
-    standalone: false
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardSubtitle, MatCardImage, MatCardContent, AsyncPipe]
 })
 export class BookDetailComponent implements OnInit {
   service = inject(BookApiService);
