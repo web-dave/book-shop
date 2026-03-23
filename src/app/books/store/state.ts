@@ -81,6 +81,19 @@ export const bookStore = signalStore(
         }),
       ),
     ),
+    create: rxMethod<Book>(
+      pipe(
+        switchMap((book) =>
+          service.create(book).pipe(
+            tapResponse({
+              next: (book) =>
+                patchState(state, { books: [...state.books(), book] }),
+              error: (err) => console.error(err),
+            }),
+          ),
+        ),
+      ),
+    ),
   })),
 );
 
