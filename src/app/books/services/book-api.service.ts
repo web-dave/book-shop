@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Book } from '../models/book';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Book } from "../models/book";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class BookApiService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   all(): Observable<Book[]> {
     return this.http.get<Book[]>(`http://localhost:4730/books`);

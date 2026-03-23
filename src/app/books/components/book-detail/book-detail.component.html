@@ -1,4 +1,4 @@
-@if (book$ | async; as book) {
+@if (book(); as book) {
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ book.title }}</mat-card-title>
@@ -6,13 +6,13 @@
     </mat-card-header>
     <img
       mat-card-image
-    [src]="
-      book.cover ||
-      'https://via.placeholder.com/468x800?text=No%20cover%20available'
-    "
+      [src]="
+        book.cover ||
+        'https://via.placeholder.com/468x800?text=No%20cover%20available'
+      "
       class="book-cover"
       alt="book cover"
-      />
+    />
     <mat-card-content>
       <p>
         {{ book.subtitle }}

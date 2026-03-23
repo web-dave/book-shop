@@ -1,17 +1,14 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { BookApiService } from "../../services/book-api.service";
+import { Component, inject } from "@angular/core";
 import { BookCardComponent } from "../book-card/book-card.component";
-import { AsyncPipe } from "@angular/common";
+import { bookStore } from "../../store/state";
 
 @Component({
-    selector: "ws-book-list",
-    templateUrl: "./book-list.component.html",
-    styleUrls: ["./book-list.component.scss"],
-    imports: [BookCardComponent, AsyncPipe]
+  selector: "ws-book-list",
+  templateUrl: "./book-list.component.html",
+  styleUrls: ["./book-list.component.scss"],
+  imports: [BookCardComponent],
 })
-export class BookListComponent implements OnInit {
-  books$ = inject(BookApiService).all();
-  constructor() {}
-
-  ngOnInit(): void {}
+export class BookListComponent {
+  private readonly store = inject(bookStore);
+  books = this.store.books;
 }

@@ -4,11 +4,13 @@ import { BooksComponent } from "./books.component";
 import { BookDetailComponent } from "./components/book-detail/book-detail.component";
 import { BookListComponent } from "./components/book-list/book-list.component";
 import { NewBookComponent } from "./components/new-book/new-book.component";
+import { bookStore, isbnResolver } from "./store/state";
 
 const bookRoutes: Routes = [
   {
     path: "",
     component: BooksComponent,
+    providers: [bookStore],
     children: [
       {
         path: "",
@@ -22,6 +24,7 @@ const bookRoutes: Routes = [
       {
         path: ":isbn",
         component: BookDetailComponent,
+        resolve: [isbnResolver],
       },
     ],
   },

@@ -1,8 +1,6 @@
 <h2>Books</h2>
 <div class="books-grid">
-  @for (book of books$ | async; track book) {
-    <ws-book-card
-      [content]="book"
-    ></ws-book-card>
+  @for (book of books(); track book) {
+    <ws-book-card [content]="book"></ws-book-card>
   }
 </div>
