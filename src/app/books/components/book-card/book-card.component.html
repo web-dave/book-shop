@@ -1,4 +1,5 @@
-<mat-card *ngIf="content">
+@if (content) {
+  <mat-card>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title data-test="title">{{ content.title }}</mat-card-title>
@@ -12,7 +13,7 @@
         'https://via.placeholder.com/468x800?text=No%20cover%20available'
       "
       [attr.alt]="content.title"
-    />
+      />
     <mat-card-content>
       <p id="abstract">
         {{ content.abstract }}
@@ -24,7 +25,7 @@
     <mat-card-actions>
       <a data-test="detail-link" mat-button [routerLink]="[content.isbn]"
         >DETAILS</a
-      >
-    </mat-card-actions>
-  </mat-card>
-  
+        >
+      </mat-card-actions>
+    </mat-card>
+  }
