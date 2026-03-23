@@ -3,9 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
-  selector: 'ws-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+    selector: 'ws-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss'],
+    standalone: false
 })
 export class NavigationComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver

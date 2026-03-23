@@ -5,9 +5,10 @@ import { ActivatedRoute } from "@angular/router";
 import { BookApiService } from "../../services/book-api.service";
 
 @Component({
-  selector: "ws-book-detail",
-  templateUrl: "./book-detail.component.html",
-  styleUrls: ["./book-detail.component.scss"],
+    selector: "ws-book-detail",
+    templateUrl: "./book-detail.component.html",
+    styleUrls: ["./book-detail.component.scss"],
+    standalone: false
 })
 export class BookDetailComponent implements OnInit {
   service = inject(BookApiService);

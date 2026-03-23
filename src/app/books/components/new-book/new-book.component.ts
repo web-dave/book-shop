@@ -4,9 +4,10 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Book } from "../../models/book";
 
 @Component({
-  selector: "ws-new-book",
-  templateUrl: "./new-book.component.html",
-  styleUrls: ["./new-book.component.scss"],
+    selector: "ws-new-book",
+    templateUrl: "./new-book.component.html",
+    styleUrls: ["./new-book.component.scss"],
+    standalone: false
 })
 export class NewBookComponent {
   service = inject(BookApiService);
