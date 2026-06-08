@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input } from "@angular/core";
+import { Component, OnInit, inject, input, ChangeDetectionStrategy } from "@angular/core";
 import { EMPTY, Observable, filter, map, switchMap } from "rxjs";
 import { Book } from "../../models/book";
 import { ActivatedRoute } from "@angular/router";
@@ -18,6 +18,7 @@ import { bookStore } from "../../store/state";
   selector: "ws-book-detail",
   templateUrl: "./book-detail.component.html",
   styleUrls: ["./book-detail.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatCard,
     MatCardHeader,

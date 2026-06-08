@@ -4,6 +4,7 @@ import {
   OnInit,
   inject,
   runInInjectionContext,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { BookApiService } from "../../services/book-api.service";
 import {
@@ -23,6 +24,7 @@ import { bookStore } from "../../store/state";
   selector: "ws-new-book",
   templateUrl: "./new-book.component.html",
   styleUrls: ["./new-book.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     ReactiveFormsModule,

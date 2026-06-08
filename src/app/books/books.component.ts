@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject } from "@angular/core";
+import { Component, OnInit, effect, inject, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { bookStore } from "./store/state";
 
@@ -6,6 +6,7 @@ import { bookStore } from "./store/state";
   selector: "app-books",
   templateUrl: "./books.component.html",
   styleUrls: ["./books.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterOutlet],
 })
 export class BooksComponent implements OnInit {

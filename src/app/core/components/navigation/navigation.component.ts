@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, map, shareReplay } from 'rxjs';
 import { MatSidenavContainer, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
@@ -13,6 +13,7 @@ import { AsyncPipe } from '@angular/common';
     selector: 'ws-navigation',
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatSidenavContainer, MatSidenav, MatToolbar, MatNavList, MatListItem, RouterLink, MatSidenavContent, MatIconButton, MatIcon, AsyncPipe]
 })
 export class NavigationComponent {

@@ -9,6 +9,7 @@ import { environment } from "./environments/environment";
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr
 } from "@angular/common/http";
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -30,6 +31,6 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       ReactiveFormsModule,
     ),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
   ],
 }).catch((err) => console.error(err));
