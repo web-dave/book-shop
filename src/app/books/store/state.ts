@@ -5,11 +5,15 @@ import {
   withMethods,
   withProps,
   withState,
+  type,
+  PartialStateUpdater,
+  withHooks,
 } from "@ngrx/signals";
+import { event, on, withReducer } from "@ngrx/signals/events";
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { tapResponse } from "@ngrx/operators";
 import { Book } from "../models/book";
-import { computed, inject } from "@angular/core";
+import { computed, effect, inject } from "@angular/core";
 import { BookApiService } from "../services/book-api.service";
 import { filter, iif, of, pipe, switchMap } from "rxjs";
 import {
@@ -17,6 +21,7 @@ import {
   ResolveFn,
   RouterStateSnapshot,
 } from "@angular/router";
+import { withDevtools } from "@angular-architects/ngrx-toolkit";
 
 type bookState = {
   books: Book[];
@@ -33,10 +38,15 @@ export const bookStore = signalStore(
     service: inject(BookApiService),
   })),
   withState(initialState),
-  withComputed(({ books, selected }) => ({
+  withDevtools("bookStore"),
+  withComputed((state) => ({
     byIsbn: computed(() =>
-      books().find((book: Book) => book.isbn == selected()),
+      state.books().find((book: Book) => book.isbn == state.selected()),
     ),
+    state: computed(() => {
+      console.log("[bookStore]", state.books(), state.selected());
+      return state;
+    }),
   })),
   withMethods(({ service, ...state }) => ({
     loadAll: rxMethod<string>(
@@ -101,3 +111,29 @@ export const isbnResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot) => {
   const store = inject(bookStore);
   return store.loadOne(route.params["isbn"]);
 };
+
+const incrementBy = event("[Counter Page] Increment By", type<number>());
+const increment = event("[Counter Page] Increment");
+const incrementBoth = event("[Counter Page] Increment Both");
+
+export const CounterStore = signalStore(
+  withState({ count1: 0, count2: 0 }),
+  withReducer(
+    // 👇 Returning a partial state object.
+    on(incrementBy, (event, state) => ({
+      count1: state.count1 + event.payload,
+    })),
+    // 👇 Returning a partial state updater.
+    on(increment, () => incrementFirst()),
+    // 👇 Returning an array of partial state updaters.
+    on(incrementBoth, () => [incrementFirst(), incrementSecond()]),
+  ),
+);
+
+function incrementFirst(): PartialStateUpdater<{ count1: number }> {
+  return (state) => ({ count1: state.count1 + 1 });
+}
+
+function incrementSecond(): PartialStateUpdater<{ count2: number }> {
+  return (state) => ({ count2: state.count2 + 1 });
+}
